@@ -1,0 +1,68 @@
+{% extends 'header.html' %}
+{%block content %}
+          
+<html>
+    <head?> <title>Profile </title></head>
+        <body>
+            <b style="color: blue;">
+                {% if msg %}
+                    {{msg}}
+                {% endif %}
+            </b>
+            <form name="profile" method="post" action="{% url 'profile' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                <table>
+                        <tr>
+                            <td>
+                                First Name:
+                            </td>
+                            <td><input type="text" name="fname" value="{{user.fname}}">   </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                    Last Name:
+                            </td>
+                            <td><input type="text" name="lname" value="{{user.lname}}" >   </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Email:
+                            </td>
+                            <td><input type="text" name="email" readonly value="{{user.email}}">   </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Mobile:
+                            </td>
+                            <td><input type="text" name="mobile" value="{{user.mobile}}">   </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Address:
+                            </td>
+                            <td><textarea rows="5" cols="22" name ="address">{{user.address}}</textarea>  </td>
+                        </tr> 
+                        <tr>
+                            <td colspan="2" align="center">
+                                <img src="{user.profile_picture.url}" style= "width: 100px; height: 100px; border-radius: 50px;"/>
+                            </td>
+                        </tr>                      
+                        <tr>
+                            <td>
+                                Profile Picture
+                            </td>
+                            
+                            <td>
+                                <input type="file" name="profile_picture">
+                            </td>
+                        </tr>                
+                        <tr>
+                            <td colspan="2" align="center">
+                                <input type="submit" name="submit" value="Update Profile" class="btn btn-primary">
+                            </td>
+                        </tr>
+                </table>
+            </form>
+        </body>
+</html>
+{% endblock %}
